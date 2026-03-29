@@ -32,14 +32,14 @@ This section shows how the prompt was iteratively improved based on observed LLM
 
 ---
 
-## v0: Basic Extraction Prompt
+## v1: Basic Extraction Prompt
 
 ### Approach
 - Simple instruction to extract structured fields from email
-- No strict formatting rules
+- Enforced strict JSON output
 
 ### Results
-- Accuracy: 62%
+- Accuracy: 60%
 
 ### Issues Observed
 - Incorrect or hallucinated port codes
@@ -47,47 +47,60 @@ This section shows how the prompt was iteratively improved based on observed LLM
 - No standardization of weight/CBM units
 
 ### Example Failure
-EMAIL_007  
-→ Extracted "Chennai" instead of "INMAA"
+EMAIL_038  
+→ Extracted "China" instead of "Tianjin/Xingang"
 
+EMAIL_014
+→ Extracted "China" instead of "Xingang"
+
+EMAIL_031 
+→ Incorrect origin inference for “Japanese goods”  
 ---
 
-## v1: Added Port Reference + UN/LOCODE Constraints
+## v2: Added Port Reference + UN/LOCODE Constraints
 
 ### Improvements
 - Introduced full port reference list in prompt
 - Forced port selection from valid dataset only
+- Explicit routing rules (ICD > POD priority)
+- Added rule to extract places name from terms like "japanese goods"
 
 ### Results
-- Accuracy: 78%
+- Accuracy: 84%
 
 ### Issues
-- India-specific port inference still inconsistent
-- Confusion between city vs port code (e.g., Nhava Sheva)
+- RT was classified as cargo_cbm but cargo_weight was calculated from it
+- Some places that are present in same code are identified as different port assignments.
 
 ### Example Failure
-EMAIL_023
-- Incorrect product_line assignment
-- Misclassified Nhava Sheva routing
+EMAIL_034
+- cargo_weight_kg assigned as NULL
+
+EMAIL_007
+- cargo_weight_kg assigned as NULL
 
 ---
 
 ## v2: Business Rules + Normalization Layer Added
 
 ### Improvements
-- Unit conversion rules (kg/lbs/tons/CBM)
-- Incoterm normalization
+- Unit conversion rules (kg/lbs/tons/CBM/RT)
+- Incoterm normalization, explicit mentioning of terms
 - Dangerous goods detection rules
-- Explicit routing rules (ICD > POD priority)
-- Enforced strict JSON output
+- Added rule for identifying places grouped under same code as single consignment
 
 ### Results
-- Accuracy: 88%
+- Accuracy: 96%
 
 ### Remaining Issues
-EMAIL_031 → Incorrect origin inference for “Japanese goods”  
-EMAIL_042 → CBM extraction missed due to malformed dimensions
+EMAIL_026
+→ RT given, cargo_weight_kg assigned is NULL
 
+EMAIL_042
+→ CBM extraction missed due to malformed dimensions
+
+EMAIL_006
+→ Incoterm extracted as "FCA"
 ---
 
 # 🧪 Edge Cases Handled

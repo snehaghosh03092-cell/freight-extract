@@ -9,8 +9,9 @@ def build_prompt(email_id, subject, body, ports):
 
             {ports}
 
-            - Prefer ports from this list
-            - If exact port is not found, use the closest match
+            - MUST use only ports from the provided list
+            - NEVER invent or approximate ports
+            - If no exact match → return null
             - If only country is known → set port_code = null and use country as port_name
 
               ========================
@@ -55,7 +56,8 @@ def build_prompt(email_id, subject, body, ports):
               2. ROUTE EXTRACTION
               - Extract origin (POL) and destination (POD)
               - If ICD is present → prefer ICD as destination
-              - If multiple routes → take FIRST route only
+              - If multiple shipments exist → extract ONLY FIRST shipment
+              - Ignore all others
 
               3. ORIGIN INFERENCE
               If origin is missing:
@@ -76,9 +78,10 @@ def build_prompt(email_id, subject, body, ports):
               - Origin starts with "IN" → pl_sea_export_lcl
 
               6. INCOTERM
-              - Recognize these incoterms (normalize to uppercase): `FOB`, `CIF`, `CFR`, `EXW`, `DDP`, `DAP`, `FCA`, `CPT`, `CIP`, `DPU`
-              - Default = FOB
-              - Always uppercase
+              - MUST be one of: FOB, CIF, CFR, EXW, DDP, DAP, FCA, CPT, CIP, DPU
+              - If not present → FOB
+              - MUST always be uppercase
+              - NEVER output any other value
 
               7. CARGO EXTRACTION
 
@@ -96,7 +99,8 @@ def build_prompt(email_id, subject, body, ports):
                 cargo_weight_kg = value × 1000
 
               - If both present → keep both
-              - Round to max 2 decimals
+              - Round numbers to max 2 decimals
+              - Do NOT infer missing units
               - Do NOT force trailing zeros
 
               8. DANGEROUS GOODS
@@ -104,8 +108,9 @@ def build_prompt(email_id, subject, body, ports):
               - FALSE otherwise
 
               9. NULL RULE
-              - Missing values → null
-              - NEVER empty string
+              - ALWAYS include all fields
+              - NEVER use empty string ("")
+              - Use null only
 
               10. BOOLEAN RULE
               - is_dangerous must ALWAYS be true or false
