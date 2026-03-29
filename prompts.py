@@ -98,7 +98,8 @@ def build_prompt(email_id, subject, body, ports):
                 cargo_cbm = value
                 cargo_weight_kg = value × 1000
 
-              - If both present → keep both
+              - If both weight and CBM are present → extract both values independently
+              - If Dimensions (L×W×H) are provided, Extract as 'null' for CBM, no calculation needed
               - Round numbers to max 2 decimals
               - Do NOT infer missing units
               - Do NOT force trailing zeros
