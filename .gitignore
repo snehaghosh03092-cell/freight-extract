@@ -1,0 +1,7 @@
+.env.example
+__pycache__/
+*.pyc
+emails_input.json
+ground_truth.json
+port_codes_reference.json
+prompts1.py

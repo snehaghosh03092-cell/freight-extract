@@ -1,0 +1,98 @@
+[
+  {
+    "id": "EMAIL_007",
+    "product_line": "pl_sea_import_lcl",
+    "incoterm": "FOB",
+    "origin_port_code": "SAJED",
+    "origin_port_name": "Jeddah / Dammam / Riyadh",
+    "destination_port_code": "INMAA",
+    "destination_port_name": "Chennai",
+    "cargo_weight_kg": 850.0,
+    "cargo_cbm": 5.8,
+    "is_dangerous": false
+  },
+  {
+    "id": "EMAIL_022",
+    "product_line": "pl_sea_import_lcl",
+    "incoterm": "CIF",
+    "origin_port_code": "CNSZX",
+    "origin_port_name": "Shenzhen",
+    "destination_port_code": "INMAA",
+    "destination_port_name": "Chennai",
+    "cargo_weight_kg": 970.0,
+    "cargo_cbm": 2.3,
+    "is_dangerous": true
+  },
+  {
+    "id": "EMAIL_024",
+    "product_line": "pl_sea_import_lcl",
+    "incoterm": "FOB",
+    "origin_port_code": "AEJEA",
+    "origin_port_name": "Jebel Ali",
+    "destination_port_code": "INMAA",
+    "destination_port_name": "Chennai ICD",
+    "cargo_weight_kg": 2400.0,
+    "cargo_cbm": 2.4,
+    "is_dangerous": false
+  },
+  {
+    "id": "EMAIL_026",
+    "product_line": "pl_sea_import_lcl",
+    "incoterm": "FOB",
+    "origin_port_code": "CNTXG",
+    "origin_port_name": "Tianjin / Xingang",
+    "destination_port_code": "INMAA",
+    "destination_port_name": "Chennai ICD",
+    "cargo_weight_kg": 1000.0,
+    "cargo_cbm": 1.0,
+    "is_dangerous": false
+  },
+  {
+    "id": "EMAIL_032",
+    "product_line": "pl_sea_import_lcl",
+    "incoterm": "FOB",
+    "origin_port_code": "CNSHA",
+    "origin_port_name": "Shanghai",
+    "destination_port_code": "INMUN",
+    "destination_port_name": "Mundra ICD",
+    "cargo_weight_kg": null,
+    "cargo_cbm": 3.9,
+    "is_dangerous": false
+  },
+  {
+    "id": "EMAIL_034",
+    "product_line": "pl_sea_import_lcl",
+    "incoterm": "FOB",
+    "origin_port_code": "PHMNL",
+    "origin_port_name": "Manila",
+    "destination_port_code": "INMAA",
+    "destination_port_name": "Chennai ICD",
+    "cargo_weight_kg": 1500.0,
+    "cargo_cbm": 1.5,
+    "is_dangerous": false
+  },
+  {
+    "id": "EMAIL_035",
+    "product_line": "pl_sea_import_lcl",
+    "incoterm": "FOB",
+    "origin_port_code": "BDDAC",
+    "origin_port_name": "Dhaka",
+    "destination_port_code": "INMAA",
+    "destination_port_name": "Chennai ICD",
+    "cargo_weight_kg": 200.0,
+    "cargo_cbm": 0.2,
+    "is_dangerous": false
+  },
+  {
+    "id": "EMAIL_043",
+    "product_line": "pl_sea_import_lcl",
+    "incoterm": "FOB",
+    "origin_port_code": "USLAX",
+    "origin_port_name": "Los Angeles",
+    "destination_port_code": "INMAA",
+    "destination_port_name": "Chennai",
+    "cargo_weight_kg": null,
+    "cargo_cbm": 2.3,
+    "is_dangerous": false
+  }
+]
